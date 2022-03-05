@@ -1,0 +1,220 @@
+@import "./functions";
+
+// -------------- table of contents --------------
+// 1- General styles
+// 2- Typography
+// 3- Animations
+// 4- Buttons
+// 5- Main content (desktop version)
+// 6- Media queries (Mobile version)
+
+// ================ General Styles ================
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: inherit;
+  font-family: "Poppins", sans-serif;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  max-width: 1440px;
+  max-height: 900px;
+  overflow: hidden !important;
+  margin: 0 auto;
+}
+
+:root {
+  --txt--size-900: 3.815rem;
+  --txt--size-500: 1rem;
+  --txt--size-100: 0.8rem;
+
+  --clr--green: #00704a;
+  --clr--pink: rgb(184, 88, 172);
+  --clr--shallow-pink: rgb(183, 110, 137);
+
+  --clr--neutral-100: #fff;
+  --clr--neutral-500: rgb(61, 61, 61);
+  --clr--neutral-900: #000;
+}
+// ================ Typography ================
+
+h1 {
+  // main title
+  font-size: var(--txt--size-900);
+  font-weight: 400;
+  color: var(--clr--neutral-500);
+}
+
+h2 {
+  // buttons
+  font-size: var(--txt--size-500);
+  font-weight: 600;
+}
+
+p,
+a {
+  // navigation & links
+  font: var(--txt--size-100);
+  color: var(--clr--neutral-500);
+  opacity: 0.85;
+  font-weight: 400;
+}
+
+// ================ Animations ================
+
+// ================ Buttons ================
+button {
+  padding: 5px 17px;
+  border-radius: 500px;
+  background-color: var(--clr--green);
+  border: none;
+  cursor: pointer;
+  transition: 250ms;
+  h2 {
+    filter: invert(
+      1
+    ); // --> inverts the color 180% --> white will become black and vice versa
+  }
+  &:hover {
+    filter: brightness(120%);
+  }
+}
+
+// ================ Main content ================
+
+#hero-section {
+  position: relative;
+  min-height: 100vh; // --> makes the height of the section atleast as big as the whole viewing port
+}
+
+//navigation
+
+header {
+  position: relative;
+  width: 100%;
+  top: 0;
+  @include flex(row, space-between, center);
+  padding: 20px 100px;
+}
+
+.logo {
+  img {
+    max-width: 80px;
+  }
+}
+
+header {
+  a {
+    transition: 250ms;
+  }
+  ul {
+    @include flex(row, flex-end, center);
+    gap: 2rem;
+    li a {
+      &:hover {
+        color: var(--clr--green);
+      }
+    }
+  }
+}
+
+// main-content
+
+.content {
+  @include flex(row, space-between, center);
+  padding: 5rem 7rem;
+  position: relative;
+}
+
+.text {
+  flex: 1;
+  @include flex(column, flex-start, flex-start);
+  gap: 1.3rem;
+}
+
+.title {
+  line-height: 5rem;
+  span {
+    font-weight: bold;
+    color: var(--clr--green);
+    font-size: calc(var(--txt--size-900) + 0.5rem) !important;
+  }
+}
+
+.subtitle {
+  margin-top: -1rem;
+}
+.img {
+  transition: 250ms;
+  position: relative;
+  @include flex(row, flex-end, center);
+  flex: 1;
+  img {
+    max-width: 300px;
+    position: absolute;
+    left: 60%;
+    bottom: -35px;
+    transform: translateX(-50%) translateY(50%);
+  }
+}
+
+.thumbnails {
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  ul {
+    @include flex(row, flex-start, center);
+    gap: 2rem;
+  }
+  li {
+    cursor: pointer;
+    &:last-child {
+      line-height: 3rem;
+    }
+    &:hover {
+      transform: translateY(-10px);
+    }
+    transition: 250ms;
+  }
+  img {
+    max-width: 65px;
+  }
+}
+
+.circle-bg {
+  width: 100%;
+  height: 100%;
+  background: var(--clr--green);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: 250ms;
+  clip-path: circle(
+    650px at right 800px
+  ); // --> first we make a whole screen container and then we can cut it down with clip path --> it wont have any overflowing problems
+}
+
+.socials {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  ul {
+    @include flex(column, flex-start, center);
+    li {
+      transition: 250ms;
+      font-size: 2rem;
+      color: var(--clr--neutral-100);
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
